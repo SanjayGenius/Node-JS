@@ -3,12 +3,7 @@ var Promise=require('promise');
 var methods= {
     getProductList :function(req){
         var result=[];
-        var productList= dao.getProductDetails().then(productList => {
-            console.log(productList)
-        return productList;
-        }).catch(function(){
-        console.log("Error occured");
-     });
+        return dao.getProductDetails();
     }
 }
 exports.data = methods;
