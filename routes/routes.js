@@ -6,36 +6,27 @@ var Promise=require('promise');
 
 var appRouter = function(app) {
 app.get("/", function(req,res) {
-   // res.send(product.data.getProductList());
-    //  product.data.getProductList().then((data) => {
-    //     res.send(JSON.stringify(data));
-    //  }).catch(function(){
-    //     console.log("Promise Rejected");
-    //  });
     product.data.getProductList().then(function(response) {
         res.send(response);
     })
 });
 
-// app.get("/account", function(req, res) {
-//          res.send(service.data.getAccountDetails(req));
-// });
+app.post("/product", function(req,res) {
+    product.data.saveProductDetails(req).then(function(response) {
+        res.send(response);
+    })
+});
 
-// app.post("/account", function(req, res) {
-//     if(!req.body.username || !req.body.password || !req.body.twitter) {
-//          res.send({"status": "error", "message": "missing a parameter"});
-//     } else {
-//          res.send(req.body);
-//     }
-// });
-
-//     app.get('/customer', function (req, res) {
-//         service.data.getCustomerDetails().then(data => {
-//             res.send(JSON.stringify(data));
-//         }).catch(function () {
-//             console.log("Promise Rejected");
-//         });
-//     });
+app.put("/product", function(req,res) {
+    product.data.editProductDetails(req).then(function(response) {
+        res.send(response);
+    })
+});
+app.delete("/product", function(req,res) {
+    product.data.deleteProductDetails(req).then(function(response) {
+        res.send(response);
+    })
+});
 }
 
 module.exports = appRouter;
