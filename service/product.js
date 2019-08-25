@@ -1,16 +1,31 @@
 var dao = require('../dao/productdao.js');
-var Promise=require('promise');
 var methods= {
     getProductList :function(req){
         return dao.getProductDetails();
     },
+    getProductPrice :function(req){
+        var productId=req.query.productId;
+        var quantity=req.query.quantity;
+        return dao.getProductPrice(productId).then(function(response){
+            var price=quantity * response[0].product_price;
+            var name= response[0].product_name;
+                 var finalResult={
+                     "productPrice":price,
+                     "productName":name,
+                     "quantity":quantity,
+                     "productId":productId,
+                     "status" : "success"
+                 };
+                 return JSON.stringify(finalResult);
+         });
+    },
     saveProductDetails :function(req){
         var productDetails = req.body;
-        dao.addProductDetails(productDetails).then(function(response){
+       return dao.addProductDetails(productDetails).then(function(response){
             if(response.insertId!=0){
                 var finalResult={
                     "data":"Product Details added successfully",
-                    "status" : "SUCCESS"
+                    "status" : "success"
                 };
                 return JSON.stringify(finalResult);
             }
@@ -18,11 +33,11 @@ var methods= {
     },
     editProductDetails:function(req){
         var productDetails = req.body;
-        dao.editProductDetails(productDetails).then(function(response){
+        return dao.editProductDetails(productDetails).then(function(response){
             if(response.affectedRows!=0){
                 var finalResult={
                     "data":"Product Details updated successfully",
-                    "status" : "SUCCESS"
+                    "status" : "success"
                 };
                 return JSON.stringify(finalResult);
             }
@@ -30,11 +45,11 @@ var methods= {
     },
     deleteProductDetails:function(req){
         var productDetails = req.body;
-        dao.deleteProductDetails(productDetails).then(function(response){
+        return dao.deleteProductDetails(productDetails).then(function(response){
             if(response.affectedRows!=0){
                 var finalResult={
                     "data":"Product Details deleted successfully",
-                    "status" : "SUCCESS"
+                    "status" : "success"
                 };
                 return JSON.stringify(finalResult);
             }

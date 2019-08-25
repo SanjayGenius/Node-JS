@@ -1,4 +1,3 @@
-var service      = require('../service/bike.js');
 var report= require('../service/report.js');
 var bill= require('../service/generatebill.js');
 var product= require('../service/product.js');
@@ -10,9 +9,26 @@ app.get("/", function(req,res) {
         res.send(response);
     })
 });
+app.get("/product", function(req,res) {
+    product.data.getProductPrice(req).then(function(response) {
+        res.send(response);
+    })
+});
+app.get("/report",function(req,res){
+    report.data.getReport(req).then(function(response){
+        res.send(response);
+    })
+});
 
 app.post("/product", function(req,res) {
     product.data.saveProductDetails(req).then(function(response) {
+        res.send(response);
+    })
+});
+
+
+app.post("/print", function(req,res) {
+    bill.data.printDetails(req).then(function(response) {
         res.send(response);
     })
 });

@@ -21,3 +21,20 @@ insert into product_info (product_name,product_price,availability) values ('Puff
 insert into product_info (product_name,product_price,availability) values ('Mango','45','no');
 /*  !!!!!!!!!!!!!!!!!    */
 
+CREATE TABLE `u71`.`customer_report`(  
+  `customer_id` INT NOT NULL AUTO_INCREMENT,
+  `customer_name` VARCHAR(250),
+  `visited_date` DATE,
+  `bill_amount` VARCHAR(250),
+   KEY(`customer_id`)
+);
+
+CREATE TABLE `u71`.`detailed_report`(  
+  `purchase_id` INT NOT NULL AUTO_INCREMENT,
+  `customer_id` INT NOT NULL,
+  `product_name` VARCHAR(250),
+  `quantity` INT,
+  `price` VARCHAR(250),
+  PRIMARY KEY (`purchase_id`)
+);
+

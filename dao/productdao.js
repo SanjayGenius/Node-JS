@@ -23,7 +23,8 @@ exports.addProductDetails =function (productDetails){
 	});	
 }
 exports.editProductDetails =function (productDetails){
-	var query="UPDATE product_info set product_name="+productDetails.productName+",product_price="+productDetails.productPrice+" where product_id="+productDetails.productId
+	var query="UPDATE product_info set product_name='"+productDetails.productName+"',product_price='"+productDetails.productPrice+"' where product_id="+productDetails.productId
+	console.log(query);
 	return new Promise((resolve, reject) => {
 		db.query(query, function (error, result) {
 			if (error) 
@@ -41,4 +42,14 @@ exports.deleteProductDetails =function (productDetails){
 			resolve(result);
 		});
 	});	
+}
+exports.getProductPrice= function(productId){
+	var query="SELECT product_price,product_name from product_info where product_id="+productId
+	return new Promise((resolve,reject) => {
+		db.query(query, function (error, result) {
+			if (error) 
+				reject(error);	
+			resolve(result);
+		});
+	});
 }
