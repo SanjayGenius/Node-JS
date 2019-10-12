@@ -21,13 +21,25 @@ var methods= {
     },
     saveProductDetails :function(req){
         var productDetails = req.body;
-       return dao.addProductDetails(productDetails).then(function(response){
-            if(response.insertId!=0){
-                var finalResult={
-                    "data":"Product Details added successfully",
-                    "status" : "success"
-                };
+       return  dao.checkProductAvailable(productDetails).then(async function(response){
+           console.log(response)
+           if(response[0].count==0){
+             return dao.addProductDetails(productDetails).then(function(response){
+                if(response.insertId!=0){
+                     var finalResult={
+                         "data":"Product Details added successfully",
+                        "status" : "success"
+                     };
                 return JSON.stringify(finalResult);
+             }
+             });
+            }else{
+                var finalResult={
+                    "data":"Product Already Exists",
+                   "status" : "failure"
+                };
+                 return JSON.stringify(finalResult);
+
             }
         });
     },
