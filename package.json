@@ -12,6 +12,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
-    "promise": "^8.0.3"
+    "node-thermal-printer": "^4.1.0",
+    "promise": "^8.0.3",
+    "write-file-queue": "0.0.1"
   }
 }
