@@ -1,0 +1,5 @@
+aws dynamodb create-table --table-name UserDetails --attribute-definitions AttributeName=loginId,AttributeType=S AttributeName=userId,AttributeType=S --key-schema AttributeName=loginId,KeyType=HASH AttributeName=userId,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
+
+aws dynamodb create-table --table-name UserRoles --attribute-definitions AttributeName=roleId,AttributeType=S AttributeName=roleName,AttributeType=S --key-schema AttributeName=roleId,KeyType=HASH AttributeName=roleName,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
+
+aws dynamodb create-table --table-name Features --attribute-definitions AttributeName=featureId,AttributeType=S AttributeName=refName,AttributeType=S --key-schema AttributeName=featureId,KeyType=HASH AttributeName=refName,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
