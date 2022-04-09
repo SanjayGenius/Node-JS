@@ -24,6 +24,6 @@
     "sequelize": "^5.21.2",
     "write-file-queue": "0.0.1",
     "uniqid": "^5.0.3",
-    "moment": "^2.24.0"
+    "moment": "^2.29.2"
   }
 }
